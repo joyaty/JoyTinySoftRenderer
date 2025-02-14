@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "math/vec.h"
+#include "math/Vec.h"
 
 int main(int args_count, char** args)
 {
