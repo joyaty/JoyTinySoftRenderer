@@ -8,6 +8,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-DUNICODE -D_UNICODE)
 
 set(ALL_CPP_FILE
-src/Main.cpp)
+src/Main.cpp
+src/math/Vec.cpp
+src/math/Vec.h)
 
 add_executable(${PROJECT_NAME} ${ALL_CPP_FILE})
