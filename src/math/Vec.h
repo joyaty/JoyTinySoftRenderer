@@ -5,6 +5,8 @@
 #include <cmath>
 #include <cassert>
 
+#pragma once
+
 namespace Joy
 {
 	/// <summary>
