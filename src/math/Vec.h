@@ -1,5 +1,5 @@
 /*
- * ��ʵ�ֵ�������ģ��
+ * 简单实现的向量类模板
 */
 
 #include <cmath>
@@ -7,14 +7,14 @@
 namespace Joy
 {
 	/// <summary>
-	/// Nά����ģ��
+	/// N维向量模板
 	/// </summary>
 	/// <typeparam name="N"></typeparam>
 	template<int N> class Vec
 	{
 	public:
 		/// <summary>
-		/// ��ȡ����ָ��ά��ֵ - ֻ��
+		/// 获取向量指定维度值 - 只读
 		/// </summary>
 		/// <param name="index"></param>
 		/// <returns></returns>
@@ -24,7 +24,7 @@ namespace Joy
 		}
 		
 		/// <summary>
-		/// ��ȡ����ָ��ά��ֵ - ��д�븳ֵ
+		/// 获取向量指定维度值 - 可写入赋值
 		/// </summary>
 		float& operator[](int index)
 		{
@@ -32,7 +32,7 @@ namespace Joy
 		}
 
 		/// <summary>
-		/// ��ȡ������ģ��
+		/// 获取向量的模长
 		/// </summary>
 		/// <returns></returns>
 		float Norm() const
@@ -41,7 +41,7 @@ namespace Joy
 		}
 
 		/// <summary>
-		/// ��ȡ������ģ��ƽ��
+		/// 获取向量的模长平方
 		/// </summary>
 		/// <returns></returns>
 		float SqrNorm() const
@@ -54,7 +54,7 @@ namespace Joy
 	};
 
 	/// <summary>
-	/// ������������*������
+	/// 重载两个向量*操作符
 	/// </summary>
 	/// <typeparam name="N"></typeparam>
 	/// <param name="vec1"></param>
