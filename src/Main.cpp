@@ -1,7 +1,7 @@
 
 #include <cstdio>
 #include <iostream>
-#include "math/Mat.h"
+#include "math/Mat.hpp"
 
 int main(int args_count, char** args)
 {
