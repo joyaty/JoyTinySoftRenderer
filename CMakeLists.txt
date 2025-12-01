@@ -5,7 +5,7 @@ project(JoyTinySoftRenderer)
 ## 可选开启测试模块
 option(ENABLE_TESTING "Enable Testing Module" ON)
 ## 设置C++标准
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(MSVC)

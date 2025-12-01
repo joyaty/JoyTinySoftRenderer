@@ -25,3 +25,9 @@ add_executable(${TEST_MODULE_NAME} ${ALL_SRC_FILES})
 target_include_directories(${TEST_MODULE_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/Tests)
 ## 链接软光栅模块和GoogleTest库
 target_link_libraries(${TEST_MODULE_NAME} PRIVATE SoftRenderer gtest_main)
+## 自动发现测试用例
+gtest_discover_tests(${TEST_MODULE_NAME} WORKING_DIRECTIORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTIES TIMEOUT 60)
+## 设置测试可执行文件输出目录
+set_target_properties(${TEST_MODULE_NAME} PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/Tests
+)
