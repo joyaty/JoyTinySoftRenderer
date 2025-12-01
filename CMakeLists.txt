@@ -1,15 +1,28 @@
-cmake_minimum_required(VERSION 3.5)
-
+## CMake 最低版本号要求
+cmake_minimum_required(VERSION 3.15)
+## 设置项目名称
 project(JoyTinySoftRenderer)
-
+## 可选开启测试模块
+option(ENABLE_TESTING "Enable Testing Module" ON)
+## 设置C++标准
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_definitions(-DUNICODE -D_UNICODE)
+if(MSVC)
+    # Windows下使用Unicode编码
+    add_definitions(-DUNICODE -D_UNICODE)
+endif()
 
-set(ALL_CPP_FILE
-src/Main.cpp
-src/math/Vec.cpp
-src/math/Vec.h)
+if(ENABLE_TESTING)
+    ## 启动测试模块
+    enable_testing()
+endif()
 
-add_executable(${PROJECT_NAME} ${ALL_CPP_FILE})
+## 软光栅模块
+add_subdirectory(${PROJECT_SOURCE_DIR}/SoftRenderer)
+## 示例程序
+add_subdirectory(${PROJECT_SOURCE_DIR}/Examples)
+if(ENABLE_TESTING)
+    ## 测试用例
+    add_subdirectory(${PROJECT_SOURCE_DIR}/Tests)
+endif()
