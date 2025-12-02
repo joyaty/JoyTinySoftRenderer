@@ -43,7 +43,7 @@ namespace Joy
          * @param index
          * @return const T&
          */
-        const T& operator[](const int index) const
+        constexpr const T& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
             return m_Data[index];
@@ -55,7 +55,7 @@ namespace Joy
          * @param index
          * @return T&
          */
-        T& operator[](const int index)
+        constexpr T& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
             return m_Data[index];
@@ -312,12 +312,12 @@ namespace Joy
         {}
 
     public:
-        const float& operator[](const int index) const
+        constexpr const float& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
             return index == 0 ? x : y;
         }
-        float& operator[](const int index)
+        constexpr float& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
             return index == 0 ? x : y;
@@ -354,12 +354,12 @@ namespace Joy
         {}
 
     public:
-        const float& operator[](const int index) const
+        constexpr const float& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
             return index == 0 ? x : index == 1 ? y : z;
         }
-        float& operator[](const int index)
+        constexpr float& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
             return index == 0 ? x : index == 1 ? y : z;
@@ -400,12 +400,12 @@ namespace Joy
         {}
 
     public:
-        const float& operator[](const int index) const
+        constexpr const float& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
             return index == 0 ? x : index == 1 ? y : index == 2 ? z : w;
         }
-        float& operator[](const int index)
+        constexpr float& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
             return index == 0 ? x : index == 1 ? y : index == 2 ? z : w;

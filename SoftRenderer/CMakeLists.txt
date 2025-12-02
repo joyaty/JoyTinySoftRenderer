@@ -8,6 +8,7 @@ Core/Renderer.cpp
 Core/Renderer.h
 Math/Vec.cpp
 Math/Vec.h
+Math/Mat.h
 )
 ## 编译为静态库
 add_library(${SUB_MODULE_NAME} STATIC ${ALL_SOURCE_FILES})

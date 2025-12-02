@@ -17,7 +17,7 @@ FetchContent_MakeAvailable(googletest)
 include(GoogleTest)
 ## 设置测试源文件目录
 set(ALL_SRC_FILES
-MathTest/VecTest.cpp
+MathTest/MathTest.cpp
 )
 ## 编译为可执行文件
 add_executable(${TEST_MODULE_NAME} ${ALL_SRC_FILES})

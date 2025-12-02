@@ -1,5 +1,6 @@
 
 #include "Math/Vec.h"
+#include "Math/Mat.h"
 #include "gtest/gtest.h"
 #include <gtest/gtest.h>
 #include <iostream>
@@ -8,7 +9,7 @@ namespace Joy
 {
     namespace UnitTest
     {
-        TEST(MathTest, VecOperatorTest2)
+        TEST(MathTest, VecOperatorTest)
         {
             // 向量加减法、分量乘法
             Vec3f vec1{2.f, 1.f, -7.f};
@@ -37,6 +38,14 @@ namespace Joy
 
             std::cout << "vec1 = " << vec1 << std::endl;
             std::cout << "vec2 = " << vec2 << std::endl;
+        }
+
+        TEST(MathTest, MatOperationTest)
+        {
+            Mat4x4f mat4 = MAT4X4F_IDENTITY;
+            Mat3x3f mat3 = MAT3X3F_IDENTITY;
+            Mat4x4f mat4_0 = MAT4X4F_ZERO;
+            Mat3x3f mat3_0 = MAT3X3F_ZERO;
         }
     }   // namespace UnitTest
 
