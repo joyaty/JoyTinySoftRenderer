@@ -9,7 +9,7 @@
  *
  */
 
- #pragma once
+#pragma once
 
 #include "Vec.h"
 #include <cassert>
@@ -36,13 +36,39 @@ namespace Joy
 
     public:
         /**
-         * @brief
+         * @brief 获取矩阵指定列 - 只读
          *
          * @param index
-         * @return constexpr const Vec<NRows, T>&
+         * @return const Vec<NRows, T>&
          */
         constexpr const Vec<NRows, T>& operator[](int index) const { return m_RawData[index]; }
-        constexpr Vec<NRows, T>&       operator[](int index) { return m_RawData[index]; }
+
+        /**
+         * @brief 获取矩阵指定列 - 可写入
+         *
+         * @param index
+         * @return Vec<NRows, T>&
+         */
+        constexpr Vec<NRows, T>& operator[](int index) { return m_RawData[index]; }
+
+    public:
+        /**
+         * @brief 获取转置矩阵
+         *
+         * @return Mat<NCols, NRows, T>
+         */
+        constexpr Mat<NCols, NRows, T> Transpose() const
+        {
+            Mat<NCols, NRows, T> ret{};
+            for (int col = 0; col < NCols; ++col)
+            {
+                for (int row = 0; row < NRows; ++row)
+                {
+                    ret[row][col] = this[col][row];
+                }
+            }
+            return ret;
+        }
 
     public:
         /**

@@ -42,8 +42,6 @@ namespace Joy
 
         TEST(MathTest, MatOperationTest)
         {
-            Mat4x4f mat4 = MAT4X4F_IDENTITY;
-            Mat3x3f mat3 = MAT3X3F_IDENTITY;
             Mat4x4f mat4_0 = MAT4X4F_ZERO;
             Mat3x3f mat3_0 = MAT3X3F_ZERO;
         }
