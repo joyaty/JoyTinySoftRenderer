@@ -1,7 +1,15 @@
 /**
+ * @file Vec.h
+ * @author JoyatY
  * @brief 向量模板定义
+ * @version 0.1
+ * @date 2025-12-02
+ *
+ * @copyright Copyright (c) 2025
  *
  */
+
+#pragma once
 
 #include <cassert>
 #include <cmath>
@@ -61,7 +69,7 @@ namespace Joy
         T m_Data[N];
 
     public:
-        constexpr static Vec<N, T> Zero() { return Vec(); }
+        constexpr static Vec<N, T> Zero() { return Vec<N, T>(); }
 
     public:
         /**
@@ -73,13 +81,13 @@ namespace Joy
 
     /**
      * @brief 判断两个向量是否相等
-     * 
-     * @tparam N 
-     * @tparam T 
-     * @param lhs 
-     * @param rhs 
-     * @return true 
-     * @return false 
+     *
+     * @tparam N
+     * @tparam T
+     * @param lhs
+     * @param rhs
+     * @return true
+     * @return false
      */
     template<int N, typename T> constexpr bool operator==(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
     {
@@ -283,7 +291,7 @@ namespace Joy
             out << vec[i];
             if (i < N - 1)
             {
-                out << ",";
+                out << ", ";
             }
         }
         out << ")";
@@ -321,9 +329,10 @@ namespace Joy
 
     public:
         constexpr static Vec<2, float> Zero() { return Vec<2, float>(); }
+        constexpr static Vec<2, float> One() { return Vec<2, float>(1.f, 1.f); }
         constexpr static Vec<2, float> Left() { return Vec<2, float>(-1.f, 0.f); }
         constexpr static Vec<2, float> Right() { return Vec<2, float>(1.f, 0.f); }
-        constexpr static Vec<2, float> Bottom() { return Vec<2, float>(0.f, -1.f); }
+        constexpr static Vec<2, float> Down() { return Vec<2, float>(0.f, -1.f); }
         constexpr static Vec<2, float> Up() { return Vec<2, float>(0.f, 1.f); }
 
     public:
@@ -363,9 +372,10 @@ namespace Joy
 
     public:
         constexpr static Vec<3, float> Zero() { return Vec<3, float>(); }
+        constexpr static Vec<3, float> One() { return Vec<3, float>(1.f, 1.f, 1.f); }
         constexpr static Vec<3, float> Left() { return Vec<3, float>(-1.f, 0.f, 0.f); }
         constexpr static Vec<3, float> Right() { return Vec<3, float>(1.f, 0.f, 0.f); }
-        constexpr static Vec<3, float> Bottom() { return Vec<3, float>(0.f, -1.f, 0.f); }
+        constexpr static Vec<3, float> Down() { return Vec<3, float>(0.f, -1.f, 0.f); }
         constexpr static Vec<3, float> Up() { return Vec<3, float>(0.f, 1.f, 0.f); }
         constexpr static Vec<3, float> Backward() { return Vec<3, float>(0.f, 0.f, -1.f); }
         constexpr static Vec<3, float> Forward() { return Vec<3, float>(0.f, 0.f, 1.f); }
@@ -428,4 +438,29 @@ namespace Joy
      *
      */
     using Vec4f = Vec<4, float>;
+
+    /**
+     * @brief 二维浮点向量叉积 - 扩展
+     *
+     * @param lhs
+     * @param rhs
+     * @return float
+     */
+    inline float Cross(const Vec2f& lhs, const Vec2f& rhs)
+    {
+        return lhs.x * rhs.y - lhs.y * rhs.x;
+    }
+
+    /**
+     * @brief 三维浮点向量叉积 - 扩展
+     *
+     * @param lhs
+     * @param rhs
+     * @return Vec3f
+     */
+    inline Vec3f Cross(const Vec3f& lhs, const Vec3f& rhs)
+    {
+        return Vec3f{lhs.y * rhs.z - lhs.z * rhs.y, lhs.z * rhs.x - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x};
+    }
+
 }   // namespace Joy
