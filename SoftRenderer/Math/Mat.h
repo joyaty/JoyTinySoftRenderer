@@ -13,6 +13,7 @@
 
 #include "Vec.h"
 #include <cassert>
+#include <ostream>
 
 namespace Joy
 {
@@ -41,7 +42,7 @@ namespace Joy
          * @param index
          * @return const Vec<NRows, T>&
          */
-        constexpr const Vec<NRows, T>& operator[](int index) const { return m_RawData[index]; }
+        constexpr const Vec<NRows, T>& operator[](const int index) const { return m_RawData[index]; }
 
         /**
          * @brief 获取矩阵指定列 - 可写入
@@ -49,7 +50,7 @@ namespace Joy
          * @param index
          * @return Vec<NRows, T>&
          */
-        constexpr Vec<NRows, T>& operator[](int index) { return m_RawData[index]; }
+        constexpr Vec<NRows, T>& operator[](const int index) { return m_RawData[index]; }
 
     public:
         /**
@@ -64,7 +65,7 @@ namespace Joy
             {
                 for (int row = 0; row < NRows; ++row)
                 {
-                    ret[row][col] = this[col][row];
+                    ret[row][col] = (*this)[col][row];
                 }
             }
             return ret;
@@ -104,6 +105,29 @@ namespace Joy
          */
         Vec<NRows, T> m_RawData[NCols];
     };
+
+    /**
+     * @brief 比较两个矩阵是否相等
+     *
+     * @tparam NRows 矩阵行数
+     * @tparam NCols 矩阵列数
+     * @tparam T 矩阵元素类型
+     * @param lhs == 左侧矩阵
+     * @param rhs == 右侧矩阵
+     * @return true
+     * @return false
+     */
+    template<int NRows, int NCols, typename T> constexpr bool operator==(const Mat<NRows, NCols, T>& lhs, const Mat<NRows, NCols, T>& rhs)
+    {
+        for (int col = 0; col < NCols; ++col)
+        {
+            if (lhs[col] != rhs[col])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * @brief 矩阵加法运算
@@ -174,7 +198,7 @@ namespace Joy
             {
                 for (int rcol = 0; rcol < NRCols; ++rcol)
                 {
-                    ret[lrow][rcol] += lhs[index][lrow] * rhs[rcol][index];
+                    ret[rcol][lrow] += lhs[index][lrow] * rhs[rcol][index];
                 }
             }
         }
@@ -255,6 +279,46 @@ namespace Joy
         }
         return ret;
     }
+
+    /**
+     * @brief 流输出矩阵
+     *
+     * @tparam NRows 矩阵行数
+     * @tparam NCols 矩阵列数
+     * @tparam T 矩阵元素类型
+     * @param out 标准输出流
+     * @param mat 输出的矩阵
+     * @return std::ostream&
+     */
+    template<int NRows, int NCols, typename T> std::ostream& operator<<(std::ostream& out, const Mat<NRows, NCols, T>& mat)
+    {
+        for (int row = 0; row < NRows; ++row)
+        {
+            for (int col = 0; col < NCols; ++col)
+            {
+                out << mat[col][row] << " ";
+            }
+            out << "\n";
+        }
+        return out;
+    }
+
+    /**
+     * @brief 二维矩阵别名
+     *
+     */
+    using Mat2x2f = Mat<2, 2, float>;
+    /**
+     * @brief 二维矩阵零矩阵
+     *
+     */
+    constexpr Mat2x2f MAT2X2F_ZERO = Mat2x2f();
+
+    /**
+     * @brief 二维矩阵单位矩阵
+     *
+     */
+    constexpr Mat2x2f MAT2X2F_IDENTITY = Mat2x2f::Identity();
 
     /**
      * @brief 三维矩阵别名

@@ -82,10 +82,10 @@ namespace Joy
     /**
      * @brief 判断两个向量是否相等
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param rhs
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs == 左侧向量
+     * @param rhs == 右侧向量
      * @return true
      * @return false
      */
@@ -102,12 +102,27 @@ namespace Joy
     }
 
     /**
+     * @brief 判断两个向量是否不等
+     * 
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs != 左侧向量
+     * @param rhs != 右侧向量
+     * @return true 
+     * @return false 
+     */
+    template<int N, typename T> constexpr bool operator!=(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    /**
      * @brief 向量加法
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param rhs
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs + 左侧向量
+     * @param rhs + 右侧向量
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> operator+(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
@@ -123,10 +138,10 @@ namespace Joy
     /**
      * @brief 向量减法
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param rhs
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs - 左侧向量
+     * @param rhs - 右侧向量
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> operator-(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
@@ -142,10 +157,10 @@ namespace Joy
     /**
      * @brief 分量乘法
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param rhs
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs * 左侧向量
+     * @param rhs * 右侧向量
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> operator*(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
@@ -161,10 +176,10 @@ namespace Joy
     /**
      * @brief 标量后置乘法
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param scale
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs 输入向量
+     * @param scale 输入标量
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> operator*(const Vec<N, T>& lhs, const T& scale)
@@ -180,10 +195,10 @@ namespace Joy
     /**
      * @brief 标量前置乘法
      *
-     * @tparam N
-     * @tparam T
-     * @param scale
-     * @param rhs
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param scale 输入标量
+     * @param rhs 输入向量
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> operator*(const T& scale, const Vec<N, T>& rhs)
@@ -194,10 +209,10 @@ namespace Joy
     /**
      * @brief 后置标量除法
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param scale
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs 输入向量
+     * @param scale 输入标量
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> operator/(const Vec<N, T>& lhs, const T& scale)
@@ -214,10 +229,10 @@ namespace Joy
     /**
      * @brief 向量点积
      *
-     * @tparam N
-     * @tparam T
-     * @param lhs
-     * @param rhs
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param lhs 点积输出参数向量1
+     * @param rhs 点积输出参数向量2
      * @return constexpr T
      */
     template<int N, typename T> constexpr T Dot(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
@@ -233,9 +248,9 @@ namespace Joy
     /**
      * @brief 向量模长平方
      *
-     * @tparam N
-     * @tparam T
-     * @param vec
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param vec 输入向量参数
      * @return constexpr T
      */
     template<int N, typename T> constexpr T SqrNorm(const Vec<N, T>& vec)
@@ -246,9 +261,9 @@ namespace Joy
     /**
      * @brief 获取向量模长
      *
-     * @tparam N
-     * @tparam T
-     * @param vec
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param vec 输入向量参数
      * @return constexpr T
      */
     template<int N, typename T> constexpr T Norm(const Vec<N, T>& vec)
@@ -259,9 +274,9 @@ namespace Joy
     /**
      * @brief 归一化向量
      *
-     * @tparam N
-     * @tparam T
-     * @param vec
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param vec 输入向量参数
      * @return constexpr Vec<N, T>
      */
     template<int N, typename T> constexpr Vec<N, T> Normalized(const Vec<N, T>& vec)
@@ -277,10 +292,10 @@ namespace Joy
     /**
      * @brief 打印N维向量
      *
-     * @tparam N
-     * @tparam T
-     * @param out
-     * @param vec
+     * @tparam N 向量维度
+     * @tparam T 向量元素类型
+     * @param out 输出流对象
+     * @param vec 输出的向量
      * @return std::ostream&
      */
     template<int N, typename T> std::ostream& operator<<(std::ostream& out, const Vec<N, T>& vec)
