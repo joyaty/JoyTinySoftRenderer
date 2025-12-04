@@ -103,13 +103,13 @@ namespace Joy
 
     /**
      * @brief 判断两个向量是否不等
-     * 
+     *
      * @tparam N 向量维度
      * @tparam T 向量元素类型
      * @param lhs != 左侧向量
      * @param rhs != 右侧向量
-     * @return true 
-     * @return false 
+     * @return true
+     * @return false
      */
     template<int N, typename T> constexpr bool operator!=(const Vec<N, T>& lhs, const Vec<N, T>& rhs)
     {
@@ -322,25 +322,31 @@ namespace Joy
     {
     public:
         constexpr Vec(float x = 0.f, float y = 0.f)
-            : x(0.f)
-            , y(0.f)
+            : m_X(0.f)
+            , m_Y(0.f)
         {}
 
     public:
         constexpr const float& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
-            return index == 0 ? x : y;
+            return index == 0 ? m_X : m_Y;
         }
         constexpr float& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
-            return index == 0 ? x : y;
+            return index == 0 ? m_X : m_Y;
         }
 
     public:
-        float x = 0.f;
-        float y = 0.f;
+        constexpr const float X() const { return m_X; }
+        constexpr float       X() { return m_X; }
+        constexpr const float Y() const { return m_Y; }
+        constexpr float       Y() { return m_Y; }
+
+    private:
+        float m_X = 0.f;
+        float m_Y = 0.f;
 
     public:
         constexpr static Vec<2, float> Zero() { return Vec<2, float>(); }
@@ -363,27 +369,35 @@ namespace Joy
     {
     public:
         constexpr Vec(float x = 0.f, float y = 0.f, float z = 0.f)
-            : x(x)
-            , y(y)
-            , z(z)
+            : m_X(x)
+            , m_Y(y)
+            , m_Z(z)
         {}
 
     public:
         constexpr const float& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
-            return index == 0 ? x : index == 1 ? y : z;
+            return index == 0 ? m_X : index == 1 ? m_Y : m_Z;
         }
         constexpr float& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
-            return index == 0 ? x : index == 1 ? y : z;
+            return index == 0 ? m_X : index == 1 ? m_Y : m_Z;
         }
 
     public:
-        float x = 0.f;
-        float y = 0.f;
-        float z = 0.f;
+        constexpr const float X() const { return m_X; }
+        constexpr float       X() { return m_X; }
+        constexpr const float Y() const { return m_Y; }
+        constexpr float       Y() { return m_Y; }
+        constexpr const float Z() const { return m_Z; }
+        constexpr float       Z() { return m_Z; }
+
+    private:
+        float m_X = 0.f;
+        float m_Y = 0.f;
+        float m_Z = 0.f;
 
     public:
         constexpr static Vec<3, float> Zero() { return Vec<3, float>(); }
@@ -408,29 +422,39 @@ namespace Joy
     {
     public:
         constexpr Vec(float x = 0.f, float y = 0.f, float z = 0.f, float w = 0.f)
-            : x(x)
-            , y(y)
-            , z(z)
-            , w(w)
+            : m_X(x)
+            , m_Y(y)
+            , m_Z(z)
+            , m_W(w)
         {}
 
     public:
         constexpr const float& operator[](const int index) const
         {
             assert(index >= 0 && index < DIMENSION);
-            return index == 0 ? x : index == 1 ? y : index == 2 ? z : w;
+            return index == 0 ? m_X : index == 1 ? m_Y : index == 2 ? m_Z : m_W;
         }
         constexpr float& operator[](const int index)
         {
             assert(index >= 0 && index < DIMENSION);
-            return index == 0 ? x : index == 1 ? y : index == 2 ? z : w;
+            return index == 0 ? m_X : index == 1 ? m_Y : index == 2 ? m_Z : m_W;
         }
 
     public:
-        float x = 0.f;
-        float y = 0.f;
-        float z = 0.f;
-        float w = 0.f;
+        constexpr const float X() const { return m_X; }
+        constexpr float       X() { return m_X; }
+        constexpr const float Y() const { return m_Y; }
+        constexpr float       Y() { return m_Y; }
+        constexpr const float Z() const { return m_Z; }
+        constexpr float       Z() { return m_Z; }
+        constexpr const float W() const { return m_W; }
+        constexpr float       W() { return m_W; }
+
+    private:
+        float m_X = 0.f;
+        float m_Y = 0.f;
+        float m_Z = 0.f;
+        float m_W = 0.f;
 
     public:
         constexpr static int DIMENSION = 4;
@@ -463,7 +487,7 @@ namespace Joy
      */
     inline float Cross(const Vec2f& lhs, const Vec2f& rhs)
     {
-        return lhs.x * rhs.y - lhs.y * rhs.x;
+        return lhs.X() * rhs.Y() - lhs.Y() * rhs.X();
     }
 
     /**
@@ -475,7 +499,7 @@ namespace Joy
      */
     inline Vec3f Cross(const Vec3f& lhs, const Vec3f& rhs)
     {
-        return Vec3f{lhs.y * rhs.z - lhs.z * rhs.y, lhs.z * rhs.x - lhs.x * rhs.z, lhs.x * rhs.y - lhs.y * rhs.x};
+        return Vec3f{lhs.Y() * rhs.Z() - lhs.Z() * rhs.Y(), lhs.Z() * rhs.X() - lhs.X() * rhs.Z(), lhs.X() * rhs.Y() - lhs.Y() * rhs.X()};
     }
 
 }   // namespace Joy
