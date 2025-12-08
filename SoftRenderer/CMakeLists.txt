@@ -4,9 +4,10 @@ cmake_minimum_required(VERSION 3.15)
 set(SUB_MODULE_NAME SoftRenderer)
 ## 设置源文件目录
 set(ALL_SOURCE_FILES
+Core/Camera.cpp
+Core/Camera.h
 Core/Renderer.cpp
 Core/Renderer.h
-Math/Vec.cpp
 Math/Vec.h
 Math/Mat.h
 )
